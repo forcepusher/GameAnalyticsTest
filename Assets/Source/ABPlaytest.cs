@@ -6,8 +6,6 @@ public class ABPlaytest : MonoBehaviour
 {
     private IEnumerator Start()
     {
-        yield return new WaitForSecondsRealtime(5f);
-
         while (!GameAnalytics.IsRemoteConfigsReady())
         {
             Debug.Log("Waiting for Remote Config initialization.");
@@ -16,20 +14,5 @@ public class ABPlaytest : MonoBehaviour
 
         string textColor = GameAnalytics.GetRemoteConfigsContentAsString();
         Debug.Log($"CONFIG CONTENT = {textColor}");
-    }
-
-    private void OnEnable()
-    {
-        GameAnalytics.OnRemoteConfigsUpdatedEvent += MyOnRemoteConfigsUpdateFunction;
-    }
-
-    private void OnDisable()
-    {
-        GameAnalytics.OnRemoteConfigsUpdatedEvent += MyOnRemoteConfigsUpdateFunction;
-    }
-
-    private void MyOnRemoteConfigsUpdateFunction()
-    {
-        Debug.Log($"DATA ARRIVED. DATA = {GameAnalytics.GetRemoteConfigsContentAsString()}");
     }
 }
