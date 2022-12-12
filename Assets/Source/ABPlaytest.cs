@@ -12,7 +12,9 @@ public class ABPlaytest : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
         }
 
-        string textColor = GameAnalytics.GetRemoteConfigsContentAsString();
-        Debug.Log($"CONFIG CONTENT = {textColor}");
+        string textColor = GameAnalytics.GetRemoteConfigsValueAsString("text_color");
+        Debug.Log($"text_color = {textColor}");
+
+        Debug.Log($"CONFIG CONTENT = {GameAnalytics.GetRemoteConfigsContentAsString()}");
     }
 }
